@@ -57,12 +57,12 @@ const handler = () => {
   const currentDarkState = darkState[lastKey];
 
   if (currentDarkState !== lastDarkState) {
-    service.send('dark', {value: currentDarkState === 'dark'});
+    service.send('dark', {value: currentDarkState === 'dark'}, { retain: true });
     lastDarkState = currentDarkState;
   }
 
   if (currentNightState !== lastNightState) {
-    service.send('night', {value: currentNightState === 'night'});
+    service.send('night', {value: currentNightState === 'night'}, { retain: true });
     lastNightState = currentNightState;
   }
 };

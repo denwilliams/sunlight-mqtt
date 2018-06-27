@@ -1,0 +1,6 @@
+mqtt:
+  uri: mqtt://localhost
+  prefix: sunlight/
+service:
+  latitude: -37.814
+  longitude: 144.96332

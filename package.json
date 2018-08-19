@@ -1,6 +1,6 @@
 {
   "name": "sunlight-mqtt",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,7 +20,7 @@
   "homepage": "https://github.com/denwilliams/sunlight-mqtt#readme",
   "description": "Emit over MQTT when sunlight phases change (using SunCalc)",
   "dependencies": {
-    "mqtt-usvc": "^1.0.2",
+    "mqtt-usvc": "^1.0.5",
     "suncalc": "^1.8.0"
   }
 }

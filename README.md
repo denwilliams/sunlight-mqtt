@@ -28,3 +28,22 @@ service:
   latitude: -37.814
   longitude: 144.96332
 ```
+
+## HTTP Status Endpoint
+
+Add port to config:
+
+```
+mqtt:
+  uri: mqtt://localhost
+  prefix: sunlight/
+http:
+  port: 9876
+service:
+  latitude: -37.814
+  longitude: 144.96332
+```
+
+Then request `http://localhost:9876/status`
+
+Metrics coming soon.

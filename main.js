@@ -17,7 +17,7 @@ const nightState = {
   sunset: "night",
   dusk: "night",
   nauticalDusk: "night",
-  night: "night"
+  night: "night",
 };
 
 const darkState = {
@@ -34,7 +34,7 @@ const darkState = {
   sunset: "dark",
   dusk: "dark",
   nauticalDusk: "dark",
-  night: "dark"
+  night: "dark",
 };
 
 async function main() {
@@ -52,7 +52,7 @@ async function main() {
 
     const pastKeys = Object.keys(times)
       .sort((a, b) => times[a] - times[b])
-      .filter(key => now > times[key]);
+      .filter((key) => now > times[key]);
 
     const lastKey = pastKeys.length ? pastKeys[pastKeys.length - 1] : "night";
 
@@ -61,7 +61,7 @@ async function main() {
 
     if (currentDarkState !== lastDarkState) {
       service.send(
-        "dark",
+        "~/dark",
         { value: currentDarkState === "dark" },
         { retain: true }
       );
@@ -70,7 +70,7 @@ async function main() {
 
     if (currentNightState !== lastNightState) {
       service.send(
-        "night",
+        "~/night",
         { value: currentNightState === "night" },
         { retain: true }
       );
@@ -84,7 +84,7 @@ async function main() {
   setInterval(handler, 60000);
 }
 
-main().catch(err => {
+main().catch((err) => {
   console.error(err.stack);
   process.exit(1);
 });

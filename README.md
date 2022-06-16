@@ -4,7 +4,7 @@ Emit over MQTT when sunlight phases change (using SunCalc)
 
 ## Topics
 
-Emits `prefix/night` and `prefix/dark` with data `{"value": true/false}` where prefix is set in config.
+Emits `{prefix}/night` and `{prefix}/dark` with data `{"value": true/false}` where prefix is set in config.
 
 ## Running
 
@@ -25,7 +25,7 @@ You can also use Consul for config. See [mqtt-usvc](https://www.npmjs.com/packag
 ```
 mqtt:
   uri: mqtt://localhost
-  prefix: sunlight/
+  prefix: sunlight
 service:
   latitude: -37.814
   longitude: 144.96332
@@ -38,7 +38,7 @@ Add port to config:
 ```
 mqtt:
   uri: mqtt://localhost
-  prefix: sunlight/
+  prefix: sunlight
 http:
   port: 9876
 service:

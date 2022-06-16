@@ -8,7 +8,7 @@ Emits `prefix/night` and `prefix/dark` with data `{"value": true/false}` where p
 
 ## Running
 
-Install `npm i -g sunlight-mqtt`
+It is intended to be installed globally, ie `npm i -g sunlight-mqtt`
 
 Create a YAML file somewhere. See `config.example.yml`
 
@@ -17,6 +17,8 @@ Run (replace path)
 ```
 CONFIG_PATH=./config.yml sunlight-mqtt
 ```
+
+You can also use Consul for config. See [mqtt-usvc](https://www.npmjs.com/package/mqtt-usvc) for more details.
 
 ## Example Config
 

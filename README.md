@@ -2,9 +2,15 @@
 
 Emit over MQTT when sunlight phases change (using SunCalc)
 
+**Breaking: v2.0 now emits `true`/`false` instead of {"value":true}/{"value":false} on night/dark events**
+
 ## Topics
 
-Emits `{prefix}/night` and `{prefix}/dark` with data `{"value": true/false}` where prefix is set in config.
+Emits `{prefix}/night` and `{prefix}/dark` with data `true`/`false` where prefix is set in config.
+
+Emits the current position of the sun every minute `{prefix}/position` with data `{"azimuth": 0, "altitude": 0}` where prefix is set in config. See suncalc for the values. You can also listen to `{prefix}/azimuth` and `{prefix}/altitude` for the individual values.
+
+Beta: Emits `{prefix}/phase` with data `"sunrise"` `"sunriseEnd"` etc where prefix is set in config and values can be found on suncalc. The phase value emitted is the most recent phase entered.
 
 ## Running
 

@@ -40,7 +40,7 @@ const darkState = {
 async function main() {
   const service = await mqttusvc.create();
 
-  let lastNightState, lastDarkState;
+  let lastNightState, lastDarkState, lastPhase;
 
   const handler = () => {
     const now = new Date();
@@ -56,31 +56,37 @@ async function main() {
 
     const lastKey = pastKeys.length ? pastKeys[pastKeys.length - 1] : "night";
 
+    const currentPhase = lastKey;
     const currentNightState = nightState[lastKey];
     const currentDarkState = darkState[lastKey];
 
+    if (currentPhase !== lastPhase) {
+      service.send("~/phase", { value: currentPhase }, { retain: true });
+      lastPhase = currentPhase;
+    }
+
     if (currentDarkState !== lastDarkState) {
-      service.send(
-        "~/dark",
-        { value: currentDarkState === "dark" },
-        { retain: true }
-      );
+      service.send("~/dark", currentDarkState === "dark", { retain: true });
       lastDarkState = currentDarkState;
     }
 
     if (currentNightState !== lastNightState) {
-      service.send(
-        "~/night",
-        { value: currentNightState === "night" },
-        { retain: true }
-      );
+      service.send("~/night", currentNightState === "night", { retain: true });
       lastNightState = currentNightState;
     }
+
+    const position = suncalc.getPosition(
+      now,
+      service.config.latitude,
+      service.config.longitude
+    );
+    service.send("~/sun/position", position, { retain: true });
+    service.send("~/sun/altitude", position.altitude, { retain: true });
+    service.send("~/sun/azimuth", position.azimuth, { retain: true });
   };
 
   handler();
 
-  // need to set this more intelligently
   setInterval(handler, 60000);
 }
 

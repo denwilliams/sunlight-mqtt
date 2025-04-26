@@ -20,7 +20,7 @@
   "homepage": "https://github.com/denwilliams/sunlight-mqtt#readme",
   "description": "Emit over MQTT when sunlight phases change (using SunCalc)",
   "dependencies": {
-    "mqtt-usvc": "^3.1.0",
+    "mqtt-usvc": "^3.2.0",
     "prom-client": "^14.0.1",
     "suncalc": "^1.9.0"
   },
